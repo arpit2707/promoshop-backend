@@ -17,7 +17,7 @@ const loaders = require("@medusajs/medusa/dist/loaders/index").default
       const port = 9000
 
       const server = GracefulShutdownServer.create(
-        app.listen(9000, (err) => {
+        app.listen(9000, "0.0.0.0",(err) => {
           if (err) {
             console.log("THIs IS PORT 9000000");
             return
