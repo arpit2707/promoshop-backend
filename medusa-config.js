@@ -37,7 +37,9 @@ const plugins = [
   `medusa-fulfillment-manual`,
   `medusa-payment-manual`,
   {
-    resolve: `@medusajs/file-local`,
+    resolve: "@medusajs/admin",
+    /** @type {import('@medusajs/admin').PluginOptions} */
+    serve: process.env.NODE_ENV === "development",
     options: {
       upload_dir: "uploads",
     },
@@ -76,6 +78,14 @@ const projectConfig = {
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
+  database_extra:
+    process.env.NODE_ENV !== "development"
+      ? {
+          ssl: {
+            rejectUnauthorized: false,
+          },
+        }
+      : {},
   // Uncomment the following lines to enable REDIS
   // redis_url: REDIS_URL
 };
