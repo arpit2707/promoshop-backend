@@ -14,11 +14,12 @@ const loaders = require("@medusajs/medusa/dist/loaders/index").default
         expressApp: app
       })
       const configModule = container.resolve("configModule")
-      const port = process.env.PORT ?? configModule.projectConfig.port ?? 9000
+      const port = 9000
 
       const server = GracefulShutdownServer.create(
-        app.listen(port, (err) => {
+        app.listen(9000, "0.0.0.0",(err) => {
           if (err) {
+            console.log("THIs IS PORT 9000000");
             return
           }
           console.log(`Server is ready on port: ${port}`)
